@@ -42,7 +42,7 @@
             </flexbox>
             <!-- 中间业务分类 -->
             <group>
-                <cell style="color:#42BE9B;font-size:12px;" title="优惠活动" value="更多" is-link>
+                <cell style="color:#42BE9B;font-size:12px;text-align:left;" title="优惠活动" value="更多" is-link>
                     <i slot="icon" class="iconfont icon-youhuiquan"></i>
                 </cell>
             </group>
@@ -52,7 +52,7 @@
                 </swiper-item>
             </swiper>
             <group>
-                <cell style="color:#42BE9B;font-size:12px;" title="生活妙招" value="更多" is-link>
+                <cell style="color:#42BE9B;font-size:12px;text-align:left;" title="生活妙招" value="更多" is-link>
                     <i slot="icon" class="iconfont icon-fenlei"></i>
                 </cell>
             </group>

@@ -17,7 +17,7 @@
             <!-- 订单状态 -->
             <card v-if="show(0)">
                 <group slot="header">
-                    <cell style="color:#42BE9B;font-size:12px;" title="日常保洁" value="2017.12.10" class="card-padding">
+                    <cell style="color:#42BE9B;font-size:12px;text-align:left;" title="日常保洁" value="2017.12.10" class="card-padding">
                         <i slot="icon" class="iconfont icon-fenlei"></i>
                     </cell>
                 </group>
@@ -38,7 +38,7 @@
             </card>
             <card v-if="show(1)">
                 <group slot="header">
-                    <cell style="color:#42BE9B;font-size:12px;" title="日常保洁" value="2017.12.10" class="card-padding">
+                    <cell style="color:#42BE9B;font-size:12px;text-align:left;" title="日常保洁" value="2017.12.10" class="card-padding">
                         <i slot="icon" class="iconfont icon-fenlei"></i>
                     </cell>
                 </group>
@@ -58,7 +58,7 @@
             </card>
             <card v-if="show(1)">
                 <group slot="header">
-                    <cell style="color:#42BE9B;font-size:12px;" title="日常保洁" value="2017.12.10" class="card-padding">
+                    <cell style="color:#42BE9B;font-size:12px;text-align:left;" title="日常保洁" value="2017.12.10" class="card-padding">
                         <i slot="icon" class="iconfont icon-fenlei"></i>
                     </cell>
                 </group>
