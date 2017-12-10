@@ -1,5 +1,5 @@
 /build/*.js
-/config/
+/config/*.js
 /dist/
 /src/assets/lib/*.js
 /*.js
