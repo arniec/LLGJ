@@ -1,5 +1,13 @@
 <template>
-    <div id="app">
+    <div id="app" style="height:100%;">
+        <!-- header -->
+        <x-header slot="header" class="llgj-header" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
+            <span v-if="this.$route.path === '/'" slot="overwrite-left">
+                    <i slot="overwrite-left" class="iconfont icon-dizhiguanli" :class="icon_left"></i>
+                    <span slot="overwrite-left" class="stringLeft">深圳</span>
+            </span>
+        </x-header>
+        <!-- header -->
         <!--主体内容视图-->
         <transition :name="animateName">
             <!--<keep-alive>-->
@@ -28,12 +36,53 @@
 
 <script>
     import {
+        ViewBox,
+        XHeader,
         Tabbar,
         TabbarItem
     } from 'vux'
+    import {
+        mapState,
+        mapActions
+    } from 'vuex'
     export default {
         name: 'app',
+        props: {
+            icon_left: String,
+            icon_right: String,
+            string_left: String,
+            string_right: String
+        },
+        components: {
+            ViewBox,
+            XHeader,
+            Tabbar,
+            TabbarItem
+        },
         computed: {
+            ...mapState({
+                // route: state => state.route,
+                // path: state => state.route.path
+            }),
+            headerTransition() {
+                if (!this.direction) return ''
+                return this.direction === 'forward' ? 'vux-header-fade-in-right' : 'vux-header-fade-in-left'
+            },
+            title() {
+                if (this.$route.path === '/') return '了了管家'
+                if (this.$route.path === '/order') return '订单'
+                if (this.$route.path === '/mine') return '我的'
+            },
+            leftOptions() {
+                return {
+                    showBack: this.$route.path !== '/'
+                }
+            },
+            rightOptions() {
+                return {
+                    showMore: true
+                }
+            },
             animateName() {
                 return this.$store.state.animate_name
             },
@@ -44,9 +93,17 @@
                 return this.$store.state.is_not_first
             }
         },
-        components: {
-            Tabbar,
-            TabbarItem
+        methods: {
+            ...mapActions({}),
+            onClickMore() {
+                this.showMenu = true
+            },
+            onLeftClick() {
+                this.$emit('leftClick')
+            },
+            onRightClick() {
+                this.$emit('rightClick')
+            }
         }
     }
 </script>
@@ -55,6 +112,43 @@
     @import './assets/less/reset.less';
     @import './assets/less/main.less';
     @import './assets/less/theme.less';
+    body {
+        background: @colorBackground;
+        color: @colorBlack;
+    }
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .llgj-header {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        background-color: @colorOne !important;
+        color: @colorWhite !important;
+        .llgj-header-title {
+            font-size: @fontSize14
+        }
+        .iconfont {
+            color: @colorFontWhite !important;
+        }
+        .stringLeft {
+            color: @colorFontWhite !important;
+        }
+        .stringRight {
+            color: @colorFontWhite !important;
+        }
+    }
+    .vux-header .vux-header-left a {
+        color: @colorWhite !important;
+    }
+    .vux-header .vux-header-left .left-arrow {
+        color: @colorWhite !important;
+    }
     .weui-tabbar {
         background-color: @colorWhite !important;
     }

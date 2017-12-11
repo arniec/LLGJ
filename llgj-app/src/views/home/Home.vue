@@ -1,8 +1,5 @@
 <template>
     <div id="home-view" class="container-view">
-        <!-- 头部 -->
-        <l-header title="了了管家" icon_left="icon-dizhiguanli" string_left="深圳" icon_right="icon-fenlei" @rightClick="onRightClick" @leftClick="onLeftClick"></l-header>
-        <!-- 头部 -->
         <!-- 中间内容 -->
         <div class="view-content">
             <!-- 轮播广告图片 -->

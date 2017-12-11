@@ -1,8 +1,5 @@
 <template>
-    <div id="order-view" v-title="'订单'" class="container-view">
-        <!-- 头部 -->
-        <l-header title="订单" icon_left="icon-fanhuijiantou" string_left="" icon_right="icon-fenlei" @rightClick="onRightClick" @leftClick="onLeftClick"></l-header>
-        <!-- 头部 -->
+    <div id="order-view" class="container-view">
         <div>
             <!-- 订单状态 -->
             <div style="height:46px;">
@@ -26,9 +23,9 @@
                 </div>
                 <div slot="footer" class="card-padding">
                     <flexbox>
-                        <flexbox-item><span style="color:#999;font-size:12px;">
-                                                                                未完成
-                                                                            </span></flexbox-item>
+                        <flexbox-item>
+                            <span style="color:#999;font-size:12px;">未完成</span>
+                        </flexbox-item>
                         <flexbox-item style="text-align: right">
                             <x-button style="font-size:12px;" mini type="warn">支付</x-button>
                             <x-button style="font-size:12px;" mini plain>取消订单</x-button>
@@ -48,8 +45,8 @@
                 <div slot="footer" class="card-padding">
                     <flexbox>
                         <flexbox-item><span style="color:#999;font-size:12px;">
-                                                                                已完成
-                                                                            </span></flexbox-item>
+                                                                                        已完成
+                                                                                    </span></flexbox-item>
                         <flexbox-item style="text-align: right">
                             <x-button style="font-size:12px;" mini plain>评价</x-button>
                         </flexbox-item>
@@ -68,8 +65,8 @@
                 <div slot="footer" class="card-padding">
                     <flexbox>
                         <flexbox-item><span style="color:#999;font-size:12px;">
-                                                                                已完成
-                                                                            </span></flexbox-item>
+                                                                                        已完成
+                                                                                    </span></flexbox-item>
                         <flexbox-item style="text-align: right">
                             <x-button style="font-size:12px;" mini plain>评价</x-button>
                         </flexbox-item>
@@ -114,22 +111,17 @@
         data() {
             return {
                 orderType: 0,
-                list1: [
-                    {
-                        status: 1,
-                        src: require('assets/images/common/miaozhao1.png'),
-                        title: '标题一',
-                        desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
-                    }
-                ]
+                list1: [{
+                    status: 1,
+                    src: require('assets/images/common/miaozhao1.png'),
+                    title: '标题一',
+                    desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。'
+                }]
             }
         },
         methods: {
-            onLeftClick() {
-                this.$router.push({
-                    name: 'home'
-                })
-            },
+            onRightClick() {},
+            onLeftClick() {},
             switchTabItem(index) {
                 console.log('on-before-index-change', index)
                 this.$vux.loading.show({
@@ -144,10 +136,11 @@
                 console.log('on item click:', index)
             },
             show(finished) {
+                console.log(this.orderType)
                 if (finished === 1 && (this.orderType === 0 || this.orderType === 1)) {
                     return true
                 } else {
-                    return false
+                    return true
                 }
             }
         }
