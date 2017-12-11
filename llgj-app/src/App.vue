@@ -73,7 +73,7 @@
             title() {
                 if (this.$route.path === '/') return '了了管家'
                 if (this.$route.path === '/order') return '订单'
-                if (this.$route.path === '/mine') return '我的'
+                if (this.$route.path === '/mine') return '个人中心'
             },
             leftOptions() {
                 return {
