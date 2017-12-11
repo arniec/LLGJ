@@ -2,7 +2,7 @@
     <div id="order-view" class="container-view">
         <div>
             <!-- 订单状态 -->
-            <div style="height:46px;">
+            <div style="height:44px;">
                 <sticky scrollBox="vux_view_box_body" :check-sticky-support="false" :offset="46">
                     <tab v-model="orderType" prevent-default @on-before-index-change="switchTabItem">
                         <tab-item selected>全部</tab-item>
@@ -45,8 +45,8 @@
                 <div slot="footer" class="card-padding">
                     <flexbox>
                         <flexbox-item><span style="color:#999;font-size:12px;">
-                                                                                        已完成
-                                                                                    </span></flexbox-item>
+                                                                                                已完成
+                                                                                            </span></flexbox-item>
                         <flexbox-item style="text-align: right">
                             <x-button style="font-size:12px;" mini plain>评价</x-button>
                         </flexbox-item>
@@ -65,8 +65,8 @@
                 <div slot="footer" class="card-padding">
                     <flexbox>
                         <flexbox-item><span style="color:#999;font-size:12px;">
-                                                                                        已完成
-                                                                                    </span></flexbox-item>
+                                                                                                已完成
+                                                                                            </span></flexbox-item>
                         <flexbox-item style="text-align: right">
                             <x-button style="font-size:12px;" mini plain>评价</x-button>
                         </flexbox-item>
@@ -78,7 +78,6 @@
 </template>
 
 <script>
-    import LHeader from 'components/common/header'
     import {
         Tab,
         TabItem,
@@ -96,7 +95,6 @@
             selected: Number
         },
         components: {
-            LHeader,
             Tab,
             TabItem,
             Card,
@@ -136,10 +134,11 @@
                 console.log('on item click:', index)
             },
             show(finished) {
-                console.log(this.orderType)
-                if (finished === 1 && (this.orderType === 0 || this.orderType === 1)) {
+                if (this.orderType === 0) {
                     return true
-                } else {
+                } else if (this.orderType === 1 && finished === 1) {
+                    return true
+                } else if (this.orderType === 2 && finished === 0) {
                     return true
                 }
             }

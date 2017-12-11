@@ -1,7 +1,8 @@
 <template>
     <div id="app" style="height:100%;">
+        <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="56px">
         <!-- header -->
-        <x-header slot="header" class="llgj-header" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
+        <x-header slot="header" style="width:100%;position:absolute;left:0;top:0;z-index:100;background-color:#42BE9B;color:#ffffff" :left-options="leftOptions" :right-options="rightOptions" :title="title" :transition="headerTransition" @on-click-more="onClickMore">
             <span v-if="this.$route.path === '/'" slot="overwrite-left">
                     <i slot="overwrite-left" class="iconfont icon-dizhiguanli" :class="icon_left"></i>
                     <span slot="overwrite-left" class="stringLeft">深圳</span>
@@ -31,6 +32,7 @@
             </tabbar-item>
         </tabbar>
         <!--/导航条-->
+        </view-box>
     </div>
 </template>
 
@@ -121,33 +123,6 @@
         height: 100%;
         width: 100%;
         overflow-x: hidden;
-    }
-    .llgj-header {
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 100;
-        background-color: @colorOne !important;
-        color: @colorWhite !important;
-        .llgj-header-title {
-            font-size: @fontSize14
-        }
-        .iconfont {
-            color: @colorFontWhite !important;
-        }
-        .stringLeft {
-            color: @colorFontWhite !important;
-        }
-        .stringRight {
-            color: @colorFontWhite !important;
-        }
-    }
-    .vux-header .vux-header-left a {
-        color: @colorWhite !important;
-    }
-    .vux-header .vux-header-left .left-arrow {
-        color: @colorWhite !important;
     }
     .weui-tabbar {
         background-color: @colorWhite !important;

@@ -74,7 +74,6 @@
         FlexboxItem,
         Panel
     } from 'vux'
-    import LHeader from '../../components/common/header'
     import GestureMobile from '../../assets/lib/GestureMobile'
     import types from '../../store/mutation-types'
     import CountUp from '../../assets/lib/countUp'
@@ -227,8 +226,7 @@
             GridItem,
             Flexbox,
             FlexboxItem,
-            Panel,
-            LHeader
+            Panel
         },
         created() {
             this.gestureMobile()
