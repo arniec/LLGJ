@@ -38,6 +38,10 @@ const config = {
   mongo: {
     host: envVars.MONGO_HOST,
     port: envVars.MONGO_PORT
+  },
+  identity_type: {
+    mobile: envVars.IDENTITY_TYPE_MOBILE,
+    wechat: envVars.IDENTITY_TYPE_WECHAT
   }
 };
 

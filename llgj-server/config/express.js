@@ -14,6 +14,9 @@ import routes from '../server/routes/index.route';
 import config from './config';
 import APIError from '../server/helpers/APIError';
 
+const passport = require('passport');
+require('./passport');
+
 const app = express();
 
 if (config.env === 'development') {
@@ -46,6 +49,8 @@ if (config.env === 'development') {
   }));
 }
 
+app.use(passport.initialize());
+
 // mount all routes on /api path
 app.use('/api', routes);
 
@@ -70,17 +75,19 @@ app.use((req, res, next) => {
 });
 
 // log error in winston transports except when executing test suite
-if (config.env !== 'test') {
-  app.use(expressWinston.errorLogger({
-    winstonInstance
-  }));
-}
+// if (config.env !== 'test') {
+//   app.use(expressWinston.errorLogger({
+//     winstonInstance
+//   }));
+// }
 
 // error handler, send stacktrace only during development
 app.use((err, req, res, next) => // eslint-disable-line no-unused-vars
   res.status(err.status).json({
+    status: 0,
+    type: 'ERROR',
     message: err.isPublic ? err.message : httpStatus[err.status],
-    stack: config.env === 'development' ? err.stack : {}
+    // stack: config.env === 'development' ? err.stack : {}
   })
 );
 

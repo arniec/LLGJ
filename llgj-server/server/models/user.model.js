@@ -1,3 +1,10 @@
+/*
+ * @Author: Roy Chen 
+ * @Date: 2017-12-12 23:54:27 
+ * @Last Modified by: Roy Chen
+ * @Last Modified time: 2017-12-12 23:55:00
+ */
+
 import Promise from 'bluebird';
 import mongoose from 'mongoose';
 import httpStatus from 'http-status';
@@ -7,19 +14,57 @@ import APIError from '../helpers/APIError';
  * User Schema
  */
 const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true
-  },
-  mobileNumber: {
-    type: String,
-    required: true,
-    match: [/^[1-9][0-9]{9}$/, 'The value of path {PATH} ({VALUE}) is not a valid mobile number.']
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+    // 昵称
+    nickname: {
+        type: String,
+        required: '昵称是必填项'
+    },
+    // 头像
+    avatar: {
+        type: String
+    },
+    // 联系方式
+    contact: {
+        type: String
+    },
+    // 状态
+    status: {
+        type: Number,
+        required: true,
+        default: 1
+    },
+    // 角色
+    roles: {
+        type: [String],
+        default: ['user']
+    },
+    // 注册IP
+    register_ip: {
+        type: String
+    },
+    // 登录时间
+    login_time: {
+        type: Date
+    },
+    // 登录IP
+    login_ip: {
+        type: String
+    },
+    created_time: {
+        type: Date,
+        default: Date.now
+    },
+    updated_time: {
+        type: Date
+    },
+    created_by: {
+        type: mongoose.Schema.Types.ObjectId
+    },
+    updated_by: {
+        type: mongoose.Schema.Types.ObjectId
+    }
+}, {
+    versionKey: '_v'
 });
 
 /**
@@ -32,43 +77,47 @@ const UserSchema = new mongoose.Schema({
 /**
  * Methods
  */
-UserSchema.method({
-});
+UserSchema.method({});
 
 /**
  * Statics
  */
 UserSchema.statics = {
-  /**
-   * Get user
-   * @param {ObjectId} id - The objectId of user.
-   * @returns {Promise<User, APIError>}
-   */
-  get(id) {
-    return this.findById(id)
-      .exec()
-      .then((user) => {
-        if (user) {
-          return user;
-        }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
-        return Promise.reject(err);
-      });
-  },
+    /**
+     * Get user
+     * @param {ObjectId} id - The objectId of user.
+     * @returns {Promise<User, APIError>}
+     */
+    get(id) {
+        return this.findById(id)
+            .exec()
+            .then((user) => {
+                if (user) {
+                    return user;
+                }
+                const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+                return Promise.reject(err);
+            });
+    },
 
-  /**
-   * List users in descending order of 'createdAt' timestamp.
-   * @param {number} skip - Number of users to be skipped.
-   * @param {number} limit - Limit number of users to be returned.
-   * @returns {Promise<User[]>}
-   */
-  list({ skip = 0, limit = 50 } = {}) {
-    return this.find()
-      .sort({ createdAt: -1 })
-      .skip(+skip)
-      .limit(+limit)
-      .exec();
-  }
+    /**
+     * List users in descending order of 'created' timestamp.
+     * @param {number} skip - Number of users to be skipped.
+     * @param {number} limit - Limit number of users to be returned.
+     * @returns {Promise<User[]>}
+     */
+    list({
+        skip = 0,
+        limit = 50
+    } = {}) {
+        return this.find()
+            .sort({
+                created: -1
+            })
+            .skip(skip)
+            .limit(limit)
+            .exec();
+    }
 };
 
 /**
