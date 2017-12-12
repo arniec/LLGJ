@@ -14,7 +14,7 @@ yarn
 
 Set environment (vars):
 ```sh
-vi .env
+cp .env.example .env
 ```
 
 Start server:
