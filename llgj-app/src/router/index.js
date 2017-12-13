@@ -41,6 +41,15 @@ const router = new Router({
             meta: {
                 status: 3
             }
+        },
+        // 登录
+        {
+            path: '/login',
+            mame: 'login',
+            component: resolve => require(['../views/auth/Login'], resolve),
+            meta: {
+                status: 4
+            }
         }
     ]
 })
@@ -56,7 +65,8 @@ router.beforeEach((to, from, next) => {
         else store.commit('SET_ANIMATE_NAME', 'vux-pop-in')
     }
     const is_not_first = Tool.dataToLocalStorageOperate.achieve('is_not_first')
-    // is_not_first = false // always diaplay guide pages, just for testing
+        // Tool.dataToLocalStorageOperate.remove('is_not_first')
+        // const is_not_first = false // always diaplay guide pages, just for testing
     if (!is_not_first && to.path !== '/guide') next('/guide')
     else if (is_not_first && to.path === '/guide') next('/')
     else next()
