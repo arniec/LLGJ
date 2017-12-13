@@ -3,7 +3,7 @@
         <!-- 中间内容 -->
         <div class="view-content">
             <!-- 轮播广告图片 -->
-            <swiper auto loop :aspect-ratio="300/800" dots-position="center">
+            <swiper auto loop :aspect-ratio="0.55" dots-position="center">
                 <swiper-item v-for="(banner, key) in banners" :key="key">
                     <img :src="banner">
                 </swiper-item>
@@ -18,7 +18,6 @@
             </grid>
             <!-- 中间业务分类 -->
             <group>
-                <cell title=""></cell>
             </group>
             <flexbox :gutter="0">
                 <flexbox-item :span="6">
@@ -90,32 +89,32 @@
                 cats: [
                     {
                         id: 1,
-                        label: '深度开荒',
+                        label: '日常保洁',
                         img: require('assets/images/common/kaihuang.png')
                     },
                     {
                         id: 2,
-                        label: '家庭厨房',
+                        label: '专业保洁',
                         img: require('assets/images/common/chufang.png')
                     },
                     {
                         id: 3,
-                        label: '家电维修',
+                        label: '做饭阿姨',
                         img: require('assets/images/common/weixiu.png')
                     },
                     {
                         id: 4,
-                        label: '专业维修',
+                        label: '住家保姆',
                         img: require('assets/images/common/weixiu2.png')
                     },
                     {
                         id: 5,
-                        label: '555',
+                        label: '深度保洁',
                         img: require('assets/images/common/loudou.png')
                     },
                     {
                         id: 6,
-                        label: '666',
+                        label: '专项保洁',
                         img: require('assets/images/common/loudou.png')
                     }
                 ],
